@@ -13,23 +13,27 @@ DisplayManager display;
 // Instance of the SCD40 sensor
 AirSensor airSensor;
 
-void setup() {
+void setup()
+{
     Serial.begin(115200);
 
     unsigned long start = millis();
-    while (!Serial && (millis() - start < 4000)) {
+    while (!Serial && (millis() - start < 4000))
+    {
         delay(10);
     }
 
     Wire.begin(SDA_PIN, SCL_PIN);
 
-    if (!display.begin(0x3C)) {
+    if (!display.begin(0x3C))
+    {
         Serial.println("Error initializing OLED!");
     }
 
     display.showStatus("Init SCD40...");
 
-    if (!airSensor.begin()) {
+    if (!airSensor.begin())
+    {
         Serial.println("Error initializing SCD40!");
         display.showStatus("SCD40 Error!");
     }
@@ -37,7 +41,8 @@ void setup() {
     display.showStatus("SCD40 Ready!");
 }
 
-void loop() {
+void loop()
+{
     AirSensorData data;
     if (airSensor.readData(data))
     {

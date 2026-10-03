@@ -1,10 +1,12 @@
 #include "DisplayManager.hpp"
 
-DisplayManager::DisplayManager(uint8_t width, uint8_t height) 
+DisplayManager::DisplayManager(uint8_t width, uint8_t height)
     : display(width, height, &Wire, -1), _width(width), _height(height) {}
 
-bool DisplayManager::begin(uint8_t i2cAddress) {
-    if (!display.begin(SSD1306_SWITCHCAPVCC, i2cAddress)) {
+bool DisplayManager::begin(uint8_t i2cAddress)
+{
+    if (!display.begin(SSD1306_SWITCHCAPVCC, i2cAddress))
+    {
         return false;
     }
     display.clearDisplay();
@@ -13,7 +15,8 @@ bool DisplayManager::begin(uint8_t i2cAddress) {
     return true;
 }
 
-void DisplayManager::showStatus(const char* message) {
+void DisplayManager::showStatus(const char *message)
+{
     display.clearDisplay();
     display.setTextSize(1);
     display.setCursor(0, 10);
@@ -21,9 +24,10 @@ void DisplayManager::showStatus(const char* message) {
     display.display();
 }
 
-void DisplayManager::updateData(uint16_t co2, float temperature, float humidity) {
+void DisplayManager::updateData(uint16_t co2, float temperature, float humidity)
+{
     display.clearDisplay();
-    
+
     // Header
     display.setTextSize(1);
     display.setCursor(0, 0);
